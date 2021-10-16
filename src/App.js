@@ -8,7 +8,7 @@ import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 class App extends React.Component {
   constructor() {
@@ -19,11 +19,34 @@ class App extends React.Component {
     };
   }
   unsubscribeFromAuth = null;
-  componentDidMount() {
-    auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
 
-      console.log(user);
+  componentDidMount() {
+
+    //get userAuth back from firebase
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+
+      //if userAuth is not null then set userRef with user profile document (does not contain snapshot of data)
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        // calling onSnapshot to get snapshot data (collection/document/collection(items)) 
+        userRef.onSnapshot(
+          //passing it to the setState to assign the information to the currentUser
+          (snapShot) => {
+            this.setState({
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data()
+              }
+            }, () => {
+              //console.logging the state object
+              console.log(this.state);
+            })
+          });
+
+      }
+      //if userAuth is null, set the currentUser to null
+      this.setState({ currentUser: userAuth });
     });
   }
 
