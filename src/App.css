@@ -1,6 +1,8 @@
 body {
+    max-width: 1200px;
     font-family: 'Open Sans Condensed';
     padding: 20px 60px;
+    margin: 0 auto;
 }
 
 a {
