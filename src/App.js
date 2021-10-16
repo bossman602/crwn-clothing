@@ -38,9 +38,7 @@ class App extends React.Component {
                 id: snapShot.id,
                 ...snapShot.data()
               }
-            }, () => {
-              //console.logging the state object
-              console.log(this.state);
+
             })
           });
 
