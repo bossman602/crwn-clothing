@@ -31,8 +31,9 @@
 
     .test-warning {
       text-align: center;
-      vertical-align: bottom;
-      margin-top: 220px;
+      position: fixed;
+      margin-top: 20px;
+      top: 0;
       font-size: 24px;
       color: red;
     }
