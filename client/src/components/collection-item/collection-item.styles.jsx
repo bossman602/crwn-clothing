@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import CustomButton from '../custom-button/custom-button.component';
+import styled from "styled-components";
+import CustomButton from "../custom-button/custom-button.component";
 
 export const CollectionItemContainer = styled.div`
   width: 22vw;
@@ -19,14 +19,73 @@ export const CollectionItemContainer = styled.div`
       display: flex;
     }
   }
+
+
+  @media screen and (min-width: 1200px) {
+
+  }
+  @media screen and (min-width: 800px) and (max-width: 1199px) {
+
+  }
+  
+  @media screen and (max-width: 799px) and (min-width: 500px) {
+      width: 42vw;
+      min-width: 70px;
+      margin: auto 1px;
+      &:hover {
+        .image {
+          opacity: unset;
+        }
+        button {
+          border: 1px solid black;
+          opacity: unset;
+          line-height: 20px;
+          text-align: center;
+          margin: auto 1px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 499px) {
+      width: 42vw;
+      min-width: 70px;
+      margin: auto 1px;
+      &:hover {
+        .image {
+          opacity: unset;
+        }
+        button {
+          border: 1px solid black;
+          opacity: unset;
+          line-height: 50px;
+          text-align: center;
+          margin: auto 1px;
+        }
+      }
+
+
 `;
 
 export const AddButton = styled(CustomButton)`
   width: 80%;
-  opacity: 0.7;
+  min-width: 145px;
   position: absolute;
   top: 255px;
-  display: none;
+@media screen and (min-width: 1200px) {
+  display: block;
+   opacity: .9;
+   min-width: unset;
+   padding: 0 10px;
+}
+
+@media screen and (min-width: 800px) and (max-width: 1199px) {
+  display: block;
+   opacity: .9;
+   min-width: unset;
+   padding: 0 10px;
+
+  }
+
 `;
 
 export const BackgroundImage = styled.div`
@@ -49,9 +108,15 @@ export const CollectionFooterContainer = styled.div`
 export const NameContainer = styled.span`
   width: 90%;
   margin-bottom: 15px;
+  @media screen and (max-width: 800px) {
+    width: 70%;
+  }
 `;
 
 export const PriceContainer = styled.span`
   width: 10%;
   text-align: right;
+  @media screen and (max-width: 800px) {
+    width: 30%;
+  }
 `;

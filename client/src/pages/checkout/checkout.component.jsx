@@ -7,15 +7,16 @@ import {
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 
-import "./checkout.styles.scss";
+import { CheckoutPageContainer, CheckoutPageHeader, CheckoutPageTotal, CheckoutPageTestWarning } from './checkout.styles'
+
 
 const CheckoutPage = () => {
     const cartItems = useSelector(selectCartItems);
     const total = useSelector(selectCartTotal);
 
     return (
-        <div className="checkout-page">
-            <div className="checkout-header">
+        <CheckoutPageContainer className="checkout-page">
+            <CheckoutPageHeader className="checkout-header">
                 <div className="header-block">
                     <span>Product</span>
                 </div>
@@ -31,22 +32,22 @@ const CheckoutPage = () => {
                 <div className="header-block">
                     <span>Remove</span>
                 </div>
-            </div>
+            </CheckoutPageHeader>
             {cartItems.map((cartItem) => (
                 <CheckoutItem key={cartItem.id} cartItem={cartItem} />
             ))}
-            <div className='total'>
+            <CheckoutPageTotal className='total'>
                 <span>TOTAL: ${total}</span>
 
-            </div>
+            </CheckoutPageTotal>
             <StripeCheckoutButton price={total} />
-            <div className='test-warning'>
-                *Please use the following test credit card for payments*
-                <br />
-                4242 4242 4242 4242 - Exp: 01/26 - CVV: 123
-            </div>
+            <CheckoutPageTestWarning>
+                *Please use the following test credit card for payments*<br />
 
-        </div>
+                4242 4242 4242 4242 - Exp: 01/26 - CVV: 123
+            </CheckoutPageTestWarning>
+
+        </CheckoutPageContainer>
     );
 }
 
